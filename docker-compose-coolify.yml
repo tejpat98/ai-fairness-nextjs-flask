@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000"
+    volumes:
+      - /app/node_modules
+    environment:
+      - NODE_ENV=production
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000"
+    volumes:
+      - uploads_data:/app/uploads
+      - reports_data:/app/reports
+    environment:
+      - FLASK_ENV=production
+      - UPLOAD_FOLDER=/app/uploads
+      - REPORTS_FOLDER=/app/reports
+      - ALLOWED_EXTENSIONS=csv
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379"
+
+  worker:
+    build: ./backend
+    container_name: rq_worker
+    command: rq worker --url redis://redis:6379/0
+    volumes:
+      - uploads_data:/app/uploads
+      - reports_data:/app/reports
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - UPLOAD_FOLDER=/app/uploads
+      - REPORTS_FOLDER=/app/reports
+    depends_on:
+      - redis
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80"
+    depends_on:
+      - frontend
+      - backend
+
+volumes:
+  uploads_data:
+  reports_data:
