@@ -9,13 +9,17 @@ This may require refactoring of the code from the original repository, so that i
 
 ## Front-end
 
-Will use Next.js
+- Next.js
+- v0 / shadcn components
+- Nextra for fully featured documentation page
 
 ## Back-end
 
 Will use a Flask API, offering the same data processing and analysis capabilities as the original repository, without using Jinja templates for output. 
 
-The container will mount the "./data" folder which will be used to store user uploaded datasets for analysis, and reports generated.
+The container will mount the "./uploads" and "./reports" folders which will be used to store user uploaded datasets for analysis, and reports generated.
+
+Will use waitress as a production ready server rather than "flask run"
 
 ## Nginx
 
@@ -27,7 +31,8 @@ All other request should be routed to the next.js frontend container.
 
 ## Docker
 
-There will be 3 docker containers: frontend, backend, nginx. Each with a dockerfile in this respective folders.
+There will be 4 docker containers: frontend, backend, nginx, worker. Each with a dockerfile in this respective folders (worker shares folder with backend).
 
 There is a primary docker compose file in the root directory.
+
 
