@@ -6,7 +6,6 @@ services:
     ports:
       - "3000"
     volumes:
-      - /app/node_modules
     environment:
       - NODE_ENV=production
 
