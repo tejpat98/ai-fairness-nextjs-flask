@@ -1,5 +1,23 @@
 # Full stack containerised ai-fairness app
 
+## Current State
+
+LIVE DEMO: https://ai-fairness-demo.tejash.dev/
+
+- Only routes for business domain are implemented. 
+
+# Goals:
+- Visual UI adjustments
+    - Anything need to be removed? Colours? 
+- Update placeholder content
+    - The website has placeholder text that needs to be double checked and/or replaced.
+- Confirm refactored code structure 
+    - I have heavily refactored the code from the FDK-toolkit. It is still functionally the same. However, the code is split up differently to improve readability and make it easier for other people to understand.
+        - Effectively the data processing of fdk_business.py and fdk_business_pipeline.py are split into:
+            - preprocessing.py: feature detection (outputs df_mapped)
+            - audit_response() from fdk_business_pipeline.py: for metrics calculations
+            - postprocessing(): for creating and saving the reports and summary
+
 ## Summary
 Currently, the repository https://github.com/AI-Fairness-com/FDK-Toolkit, is a Flask App that uses Jinja templates to handle front end.
 
