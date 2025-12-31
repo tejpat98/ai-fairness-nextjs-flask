@@ -17,6 +17,7 @@ LIVE DEMO: https://ai-fairness-demo.tejash.dev/
             - preprocessing.py: feature detection (outputs df_mapped)
             - audit_response() from fdk_business_pipeline.py: for metrics calculations
             - postprocessing(): for creating and saving the reports and summary
+- Finish off other domain routes
 
 ### Summary
 Currently, the repository https://github.com/AI-Fairness-com/FDK-Toolkit, is a Flask App that uses Jinja templates to handle front end.
